@@ -1,0 +1,10 @@
+- name: OpenVPN service
+  hosts: all
+  sudo: true
+  tasks:
+  - set_fact:
+      bird_conf: /usr/local/etc/
+    when: ansible_distribution == 'FreeBSD'
+  - set_fact:
+      bird_conf: /etc/
+    when: ansible_system == 'Linux'
