@@ -3,11 +3,14 @@
   sudo: true
   tasks:
   - set_fact:
-      bird_conf: /usr/local/etc/
+      bird_config: /usr/local/etc/bird.conf
     when: ansible_distribution == 'FreeBSD'
   - set_fact:
-      bird_conf: /etc/
-    when: ansible_system == 'Linux'
+      bird_config: /etc/bird/bird.conf
+    when: ansible_distribution == 'Debian'
+  - set_fact:
+      bird_config: /etc/bird.conf
+    when: ansible_distribution == 'CentOS'
 
   - name: Install bird (Debian)
     when: ansible_distribution == 'Debian'
@@ -22,3 +25,9 @@
   - name: Enable bird service (FreeBSD)
     when: ansible_distribution == 'FreeBSD'
     lineinfile: dest=/etc/rc.conf regexp=^bird_enable= line=bird_enable=YES
+
+  - name: Paste server config
+    template: >
+      src=templates/bird4.conf
+      dest={{ bird_config }}
+      mode=0744
