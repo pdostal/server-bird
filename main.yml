@@ -8,3 +8,17 @@
   - set_fact:
       bird_conf: /etc/
     when: ansible_system == 'Linux'
+
+  - name: Install bird (Debian)
+    when: ansible_distribution == 'Debian'
+    apt: name=bird state=latest force=yes
+  - name: Install bird (CentOS)
+    when: ansible_distribution == 'CentOS'
+    yum: name=bird state=latest
+  - name: Install bird (FreeBSD)
+    when: ansible_distribution == 'FreeBSD'
+    pkgng: name=bird state=present
+
+  - name: Enable bird service (FreeBSD)
+    when: ansible_distribution == 'FreeBSD'
+    lineinfile: dest=/etc/rc.conf regexp=^bird_enable= line=bird_enable=YES
