@@ -1,6 +1,12 @@
 - name: OpenVPN service
   hosts: all
   sudo: true
+  handlers:
+  - name: restart bird
+    service: name=bird state=restarted
+  - name: reload bird
+    service: name=bird state=reloaded
+
   tasks:
   - set_fact:
       bird_config: /usr/local/etc/bird.conf
@@ -15,12 +21,15 @@
   - name: Install bird (Debian)
     when: ansible_distribution == 'Debian'
     apt: name=bird state=latest force=yes
+    notify: restart bird
   - name: Install bird (CentOS)
     when: ansible_distribution == 'CentOS'
     yum: name=bird state=latest
+    notify: restart bird
   - name: Install bird (FreeBSD)
     when: ansible_distribution == 'FreeBSD'
     pkgng: name=bird state=present
+    notify: restart bird
 
   - name: Enable bird service (FreeBSD)
     when: ansible_distribution == 'FreeBSD'
@@ -31,3 +40,4 @@
       src=templates/bird4.conf
       dest={{ bird_config }}
       mode=0744
+    notify: reload bird
