@@ -1,4 +1,4 @@
 [clients]
-cucumber  router_id=1  ifaces='["eth1", "tap0"]'
+cucumber  router_id=1  ifaces='["eth1", "tap0", "tun0"]'
 rhubarb  router_id=2  ifaces='["vtnet1", "tap0"]'
 sorrel  router_id=3  ifaces='["eth1", "tap0"]'
