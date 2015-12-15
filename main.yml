@@ -1,43 +1,56 @@
-- name: OpenVPN service
+- name: BIRD
   hosts: all
   sudo: true
   handlers:
-  - name: restart bird
+  - name: restart bird4
     service: name=bird state=restarted
-  - name: reload bird
+  - name: reload bird4
     service: name=bird state=reloaded
+  - name: restart bird6
+    service: name=bird6 state=restarted
+  - name: reload bird6
+    service: name=bird6 state=reloaded
 
   tasks:
   - set_fact:
-      bird_config: /usr/local/etc/bird.conf
+      bird4_config: /usr/local/etc/bird.conf
+      bird6_config: /usr/local/etc/bird6.conf
     when: ansible_distribution == 'FreeBSD'
   - set_fact:
-      bird_config: /etc/bird/bird.conf
+      bird4_config: /etc/bird/bird.conf
+      bird6_config: /etc/bird/bird6.conf
     when: ansible_distribution == 'Debian'
-  - set_fact:
-      bird_config: /etc/bird.conf
-    when: ansible_distribution == 'CentOS'
 
   - name: Install bird (Debian)
     when: ansible_distribution == 'Debian'
     apt: name=bird state=latest force=yes
-    notify: restart bird
-  - name: Install bird (CentOS)
-    when: ansible_distribution == 'CentOS'
-    yum: name=bird state=latest
-    notify: restart bird
-  - name: Install bird (FreeBSD)
+    notify: restart bird4
+    notify: restart bird46
+  - name: Install bird4 (FreeBSD)
     when: ansible_distribution == 'FreeBSD'
     pkgng: name=bird state=present
-    notify: restart bird
+    notify: restart bird4
+  - name: Install bird6 (FreeBSD)
+    when: ansible_distribution == 'FreeBSD'
+    pkgng: name=bird6 state=present
+    notify: restart bird6
 
-  - name: Enable bird service (FreeBSD)
+  - name: Enable bird4 service (FreeBSD)
     when: ansible_distribution == 'FreeBSD'
     lineinfile: dest=/etc/rc.conf regexp=^bird_enable= line=bird_enable=YES
+  - name: Enable bird6 service (FreeBSD)
+    when: ansible_distribution == 'FreeBSD'
+    lineinfile: dest=/etc/rc.conf regexp=^bird6_enable= line=bird6_enable=YES
 
-  - name: Paste server config
+  - name: Paste bird4 config
     template: >
       src=templates/bird4.conf
-      dest={{ bird_config }}
+      dest={{ bird4_config }}
       mode=0744
-    notify: reload bird
+    notify: reload bird4
+  - name: Paste bird6 config
+    template: >
+      src=templates/bird6.conf
+      dest={{ bird6_config }}
+      mode=0744
+    notify: reload bird6
