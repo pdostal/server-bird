@@ -25,7 +25,7 @@
     when: ansible_distribution == 'Debian'
     apt: name=bird state=latest force=yes
     notify: restart bird4
-    notify: restart bird46
+    notify: restart bird6
   - name: Install bird4 (FreeBSD)
     when: ansible_distribution == 'FreeBSD'
     pkgng: name=bird state=present

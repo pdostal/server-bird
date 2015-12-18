@@ -3,3 +3,4 @@ cucumber  router_id=1  ifaces6='["eth1", "tap0", "tun0"]'  ifaces4='["tap0", "tu
 rhubarb  router_id=2  ifaces6='["tap0"]'  ifaces4='["tap0"]'
 sorrel  router_id=3  ifaces6='["tap0"]'  ifaces4='["tap0"]'
 grape  router_id=7  ifaces6='["tap0"]'  ifaces4='["tap0"]'
+peas  router_id=8  ifaces6='["tap0"]'  ifaces4='["tap0"]'
