@@ -1,5 +1,10 @@
 router_id: 8
+direct:
+- eth0
 ifaces6:
 - tap0
 ifaces4:
 - tap0
+routes6: []
+routes4:
+- '147.32.0.0/16 via "eth0"'

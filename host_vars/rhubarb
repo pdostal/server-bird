@@ -1,5 +1,9 @@
 router_id: 2
+direct:
+- vtnet0
 ifaces6:
 - tap0
 ifaces4:
 - tap0
+routes6: []
+routes4: []

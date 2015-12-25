@@ -1,4 +1,6 @@
 router_id: 1
+direct:
+- eth0
 ifaces6:
 - tap0
 - tun0
@@ -6,3 +8,5 @@ ifaces4:
 - eth1
 - tap0
 - tun0
+routes6: []
+routes4: []
