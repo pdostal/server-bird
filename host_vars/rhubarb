@@ -1,3 +1,5 @@
 router_id: 2
-ifaces6: '["tap0"]'
-ifaces4: '["tap0"]'
+ifaces6:
+- tap0
+ifaces4:
+- tap0
