@@ -7,9 +7,9 @@
   - name: reload bird4
     service: name=bird state=reloaded enabled=yes
   - name: restart bird6
-    service: name=bird6 state=stopped enabled=no
+    service: name=bird6 state=stopped enabled=yes
   - name: reload bird6
-    service: name=bird6 state=stopped enabled=no
+    service: name=bird6 state=stopped enabled=yes
 
   tasks:
   - set_fact:
