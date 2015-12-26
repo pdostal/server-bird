@@ -35,13 +35,6 @@
     pkgng: name=bird6 state=present
     notify: restart bird6
 
-  - name: Enable bird4 service (FreeBSD)
-    when: ansible_distribution == 'FreeBSD'
-    lineinfile: dest=/etc/rc.conf regexp=^bird_enable= line=bird_enable=YES
-  - name: Enable bird6 service (FreeBSD)
-    when: ansible_distribution == 'FreeBSD'
-    lineinfile: dest=/etc/rc.conf regexp=^bird6_enable= line=bird6_enable=YES
-
   - name: Paste bird4 config
     template: >
       src=templates/bird4.conf
