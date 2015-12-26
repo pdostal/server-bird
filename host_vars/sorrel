@@ -1,7 +1,5 @@
 router_id: 3
 direct:
 - eth0
-ifaces:
-- tap0
 routes6: []
 routes4: []

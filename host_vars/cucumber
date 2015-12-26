@@ -3,7 +3,5 @@ direct:
 - eth0
 - eth1
 - tun0
-ifaces:
-- tap0
 routes6: []
 routes4: []
