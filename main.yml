@@ -3,13 +3,13 @@
   sudo: true
   handlers:
   - name: restart bird4
-    service: name=bird state=restarted
+    service: name=bird state=restarted enabled=yes
   - name: reload bird4
-    service: name=bird state=reloaded
+    service: name=bird state=reloaded enabled=yes
   - name: restart bird6
-    service: name=bird6 state=restarted
+    service: name=bird6 state=stopped enabled=no
   - name: reload bird6
-    service: name=bird6 state=reloaded
+    service: name=bird6 state=stopped enabled=no
 
   tasks:
   - set_fact:
