@@ -1,6 +1,7 @@
 router_id: 1
-direct:
-- eth0
+ifaces6:
+- tun0
+ifaces4:
 - eth1
 - tun0
 routes6: []

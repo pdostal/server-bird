@@ -1,5 +1,5 @@
 router_id: 7
-direct:
-- vtnet0
+ifaces6: []
+ifaces4: []
 routes6: []
 routes4: []
