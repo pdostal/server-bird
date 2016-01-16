@@ -1,5 +1,6 @@
 router_id: 8
 ifaces6: []
-ifaces4: []
+ifaces4:
+- tun3
 routes6: []
 routes4: []
