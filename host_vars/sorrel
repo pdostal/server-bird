@@ -1,6 +1,5 @@
 router_id: 3
 ifaces6: []
-ifaces4:
-- eth1
+ifaces4: []
 routes6: []
 routes4: []
